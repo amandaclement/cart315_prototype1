@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// script for player movement and platform flipping
+
 // reference (character controller tutorial): https://www.youtube.com/watch?v=59No0ybIoxg
 
 public class Player : MonoBehaviour
@@ -71,6 +73,13 @@ public class Player : MonoBehaviour
 
         Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
 
+        directionY -= gravity * Time.deltaTime;
+        direction.y = directionY;
+        controller.Move(direction * moveSpeed * Time.deltaTime);
+    }
+
+    void Update() // goes in Update rather than FixedUpdate for more reliable double jumping
+    {
         if (controller.isGrounded)
         {
             canDoubleJump = true; // enable double jump
@@ -93,8 +102,5 @@ public class Player : MonoBehaviour
             }
         }
 
-        directionY -= gravity * Time.deltaTime;
-        direction.y = directionY;
-        controller.Move(direction * moveSpeed * Time.deltaTime);
     }
 }
