@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
 
     private bool canDoubleJump = false;
 
+    public GameObject finish;
+    public GameObject gameOverText;
+
     // reference: https://docs.unity3d.com/ScriptReference/GameObject.FindGameObjectsWithTag.html?_ga=2.125981838.2057613814.1612463807-1308570294.1603245419
     // detecting which plane the player is closest to figure out which one to flip (on double jump)
     public GameObject FindClosestPlane()
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        gameOverText.SetActive(false);
     }
 
     // reference: https://answers.unity.com/questions/1202034/smooth-90-degree-rotation-on-keypress.html
@@ -93,13 +97,27 @@ public class Player : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && canDoubleJump) // for some reason this only really works with GetButtonDown
             {
-                Debug.Log("double jump");
                 directionY = jumpSpeed * doubleJumpMultiplier;
                 canDoubleJump = false;
 
                 // flipping plane on double jump
                 StartCoroutine(RotatePlane(Vector3.left * 180, 0.2f));
             }
+        }
+
+        float minDist = 1.5f;
+
+        float dist = Vector3.Distance(finish.transform.position, this.transform.position);
+        if (dist < minDist)
+        { 
+            gameOverText.SetActive(true);
+
+
+        }
+        else
+        {
+            gameOverText.SetActive(false);
+
         }
 
     }

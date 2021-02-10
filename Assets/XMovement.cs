@@ -11,10 +11,15 @@ public class XMovement: MonoBehaviour
 
     private int direction = 1; // movement direction
 
+    private float xStartPosition; // X start position of target platform
+    private float yStartPosition; // Y start position of target platform 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        xStartPosition = this.transform.position.x;
+        yStartPosition = this.transform.position.y;
+
     }
 
     // Update is called once per frame
@@ -22,7 +27,7 @@ public class XMovement: MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0); // moving platform across x axis
+        Vector3 movement = new Vector3(moveHorizontal, yStartPosition); // moving platform across x axis
 
         if (transform.position.x > max1)
         {

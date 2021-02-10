@@ -45,17 +45,17 @@ public class CameraTracking : MonoBehaviour
     {
         mainCamera.GetComponent<Transform>().LookAt(player.transform); // follow player
 
-        // alpha 1 key to move main camera up
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            mainCamera.transform.position += Vector3.up * moveSpeed * Time.deltaTime;
-        }
+        //// alpha 1 key to move main camera up
+        //if (Input.GetKey(KeyCode.Alpha1))
+        //{
+        //    mainCamera.transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        //}
 
-        // Q key to move main camera down
-        if (Input.GetKey(KeyCode.Q))
-        {
-            mainCamera.transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-        }
+        //// Q key to move main camera down
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    mainCamera.transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        //}
 
         // hold E to pause game and trigger overview (secondary camera)
         if (Input.GetKeyDown(KeyCode.E))
